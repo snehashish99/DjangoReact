@@ -41,8 +41,8 @@ class App extends Component {
       {
         if(event.target[i].value == "")
         {
-          alert("Empty field not allowed")
-          return
+          //alert("Empty field not allowed")
+          //return
         }
         all_data[event.target[i].name] = event.target[i].value
       }
@@ -51,16 +51,20 @@ class App extends Component {
     // NOTE: you access FormData fields with `data.get(fieldName)'
     
     axios.get('http://127.0.0.1:8000/submit-data/', {
-      params: all_data,
+      params: all_data,      
     })
     .then(function (response) {
       console.log(response);
+      window.location.reload();
     })
   }
 
   render(){
     return (
       <div>      
+        <div>
+          <h1 className="text-center mt-5">Marks Upload</h1>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col-sm-6 p-5">
@@ -123,7 +127,8 @@ class App extends Component {
                         <td>{value.gender}</td>
                         <td>{value.physics}</td>
                         <td>{value.chemistry}</td>
-                        <td>{value.maths}</td>                        
+                        <td>{value.maths}</td>  
+                        <td>{value.average}</td>                        
                       </tr>
               })}               
             </tbody>

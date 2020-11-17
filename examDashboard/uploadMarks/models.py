@@ -8,6 +8,6 @@ class exam_data(models.Model):
     physics = models.IntegerField('Physics',null=True,blank=True)
     chemistry = models.IntegerField('Chemistry',null=True,blank=True)
     maths = models.IntegerField('Maths',null=True,blank=True)
-
+    average = models.IntegerField('Average',null=True,blank=True)
     class Meta():
         verbose_name,verbose_name_plural = 'Exam data','Exam Data'

@@ -13,8 +13,8 @@ def submit_data(request):
         chemistry = request.GET.get('chemistry')
         maths = request.GET.get('maths')
 
-        #average = (physics + maths + chemistry)/3
-        #average = round(average,2)
+        average = (int(physics) + int(maths) + int(chemistry))/3
+        average = round(average,2)
 
         #save here
         exam_data.objects.create(
@@ -24,8 +24,10 @@ def submit_data(request):
             physics = physics,
             chemistry = chemistry,
             maths = maths,
+            average = average,
         )
-    return redirect('http://localhost:3000/')   
+    jsonresponse = {'status':'success'}
+    return JsonResponse(jsonresponse)   
 
 def get_data(request): 
 
@@ -39,6 +41,7 @@ def get_data(request):
             'physics' : i.physics,
             'chemistry' : i.chemistry,
             'maths' : i.maths,
+            'average': i.average,
         })
     jsonresponse = {'data':data}
 
